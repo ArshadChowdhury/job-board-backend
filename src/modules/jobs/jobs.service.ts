@@ -13,6 +13,23 @@ export class JobsService {
 
   async findAll(): Promise<Job[]> {
     return this.jobRepository.find({
+      order: { createdAt: 'DESC' },
+    });
+  }
+
+  async unhide(id: string): Promise<Job> {
+    const job = await this.jobRepository.findOneBy({ id });
+
+    if (!job) {
+      throw new NotFoundException(`Job with id ${id} not found`);
+    }
+
+    job.hidden = false;
+    return this.jobRepository.save(job);
+  }
+
+  async findAllVisible(): Promise<Job[]> {
+    return this.jobRepository.find({
       where: { hidden: false },
       order: { createdAt: 'DESC' },
     });
@@ -48,14 +65,14 @@ export class JobsService {
     await this.jobRepository.remove(job);
   }
 
-  // async hide(id: string): Promise<Job> {
-  //   const job = await this.jobRepository.findOneBy({ id });
+  async hide(id: string): Promise<Job> {
+    const job = await this.jobRepository.findOneBy({ id });
 
-  //   if (!job) {
-  //     throw new NotFoundException(`Job with id ${id} not found`);
-  //   }
+    if (!job) {
+      throw new NotFoundException(`Job with id ${id} not found`);
+    }
 
-  //   job.hidden = true;
-  //   return this.jobRepository.save(job);
-  // }
+    job.hidden = true;
+    return this.jobRepository.save(job);
+  }
 }

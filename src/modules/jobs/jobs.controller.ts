@@ -19,10 +19,15 @@ export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
 
   @Public()
-  @Get()
+  @Get('public')
   async findAll() {
     console.log('Getting all jobs - public route');
-    return this.jobsService.findAll();
+    return this.jobsService.findAllVisible();
+  }
+
+  @Get('admin')
+  async getAllJobs() {
+    return this.jobsService.findAll(); // no hidden filter
   }
 
   @Public()
@@ -37,10 +42,15 @@ export class JobsController {
     return this.jobsService.create(createJobDto);
   }
 
-  // @Patch(':id/hide')
-  // async hideJob(@Param('id') id: string) {
-  //   return this.jobsService.hide(id);
-  // }
+  @Patch(':id/hide')
+  async hideJob(@Param('id') id: string) {
+    return this.jobsService.hide(id);
+  }
+
+  @Patch(':id/unhide')
+  async unhideJob(@Param('id') id: string) {
+    return this.jobsService.unhide(id);
+  }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
