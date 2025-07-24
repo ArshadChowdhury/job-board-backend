@@ -20,4 +20,9 @@ export class ApplicationsController {
   async create(@Body() createApplicationDto: CreateApplicationDto) {
     return this.applicationsService.create(createApplicationDto);
   }
+
+  @Get()
+  async findAll() {
+    return this.applicationsService.findAll();
+  }
 }

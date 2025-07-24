@@ -31,4 +31,8 @@ export class ApplicationsService {
     const application = this.applicationRepository.create(createApplicationDto);
     return this.applicationRepository.save(application);
   }
+
+  async findAll(): Promise<Application[]> {
+    return this.applicationRepository.find(); // Or findMany() for Prisma, .find({}) for Mongoose
+  }
 }
