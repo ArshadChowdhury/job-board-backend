@@ -56,8 +56,6 @@ export class JobsService {
   async remove(id: string): Promise<void> {
     const job = await this.jobRepository.findOneBy({ id });
 
-    console.log(job);
-
     if (!job) {
       throw new NotFoundException(`Job with id ${id} not found`);
     }
