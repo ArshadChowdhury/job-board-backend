@@ -9,12 +9,6 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const { username, password } = loginDto;
 
-    console.log('Login attempt:', { username, password });
-    console.log('Expected:', {
-      username: process.env.ADMIN_USERNAME,
-      password: process.env.ADMIN_PASSWORD,
-    });
-
     // Simple admin check
     if (
       username !== process.env.ADMIN_USERNAME ||
@@ -39,8 +33,6 @@ export class AuthService {
   }
 
   async validateUser(payload: any) {
-    console.log('Validating payload:', payload);
-
     // Simple validation - in a real app you'd query a user database
     if (
       payload.username === process.env.ADMIN_USERNAME &&

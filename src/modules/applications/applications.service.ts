@@ -33,6 +33,6 @@ export class ApplicationsService {
   }
 
   async findAll(): Promise<Application[]> {
-    return this.applicationRepository.find(); // Or findMany() for Prisma, .find({}) for Mongoose
+    return this.applicationRepository.find();
   }
 }

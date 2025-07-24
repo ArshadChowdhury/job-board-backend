@@ -31,6 +31,9 @@ export class Job {
   @Column({ type: 'varchar', length: 100, nullable: true })
   salary: string;
 
+  @Column({ type: 'boolean', default: false })
+  hidden: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 

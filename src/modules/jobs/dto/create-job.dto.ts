@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, Length } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, Length, IsBoolean } from 'class-validator';
 
 export class CreateJobDto {
   @IsString()
@@ -29,4 +29,8 @@ export class CreateJobDto {
   @IsOptional()
   @Length(1, 100)
   salary?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  hidden?: boolean;
 }

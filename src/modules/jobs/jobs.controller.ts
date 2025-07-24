@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseGuards,
+  Delete,
+  Patch,
+} from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -26,5 +35,16 @@ export class JobsController {
   @Post()
   async create(@Body() createJobDto: CreateJobDto) {
     return this.jobsService.create(createJobDto);
+  }
+
+  // @Patch(':id/hide')
+  // async hideJob(@Param('id') id: string) {
+  //   return this.jobsService.hide(id);
+  // }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    console.log('Deleting job by id - public route:', id);
+    return this.jobsService.remove(id);
   }
 }

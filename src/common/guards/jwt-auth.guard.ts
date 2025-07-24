@@ -19,7 +19,6 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       context.getClass(),
     ]);
 
-    console.log('JwtAuthGuard - Route is public:', isPublic);
 
     if (isPublic) {
       return true;
@@ -27,13 +26,11 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
     const request = context.switchToHttp().getRequest();
     const authHeader = request.headers.authorization;
-    console.log('JwtAuthGuard - Auth header:', authHeader); 
 
     return super.canActivate(context);
   }
 
   handleRequest(err, user, info, context) {
-    console.log('JwtAuthGuard handleRequest:', { err, user, info });
 
     if (err || !user) {
       console.log('JwtAuthGuard - Authentication failed:', err || 'No user'); 
