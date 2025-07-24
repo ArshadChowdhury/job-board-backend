@@ -1,4 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Job } from '../modules/jobs/entities/job.entity';
+import { Application } from '../modules/applications/entities/application.entity';
 
 export const databaseConfig = (): TypeOrmModuleOptions => ({
   type: 'postgres',
@@ -7,6 +9,7 @@ export const databaseConfig = (): TypeOrmModuleOptions => ({
   username: process.env.DATABASE_USERNAME || 'postgres',
   password: process.env.DATABASE_PASSWORD || 'password',
   database: process.env.DATABASE_NAME || 'job-board',
+  entities: [Job, Application],
   synchronize: process.env.NODE_ENV === 'development', // Only in development
   logging: process.env.NODE_ENV === 'development',
   ssl:
