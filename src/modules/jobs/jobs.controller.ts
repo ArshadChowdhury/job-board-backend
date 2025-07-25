@@ -31,28 +31,28 @@ export class JobsController {
   }
 
   @Public()
-  @Get(':id')
+  @Get('public/:id')
   async findOne(@Param('id') id: string) {
     console.log('Getting job by id - public route:', id);
     return this.jobsService.findOne(id);
   }
 
-  @Post()
+  @Post('admin/create')
   async create(@Body() createJobDto: CreateJobDto) {
     return this.jobsService.create(createJobDto);
   }
 
-  @Patch(':id/hide')
+  @Patch('admin/:id/hide')
   async hideJob(@Param('id') id: string) {
     return this.jobsService.hide(id);
   }
 
-  @Patch(':id/unhide')
+  @Patch('admin/:id/unhide')
   async unhideJob(@Param('id') id: string) {
     return this.jobsService.unhide(id);
   }
 
-  @Delete(':id')
+  @Delete('admin/:id')
   async remove(@Param('id') id: string) {
     console.log('Deleting job by id - public route:', id);
     return this.jobsService.remove(id);
