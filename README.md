@@ -41,6 +41,8 @@ Then visit - http://localhost:3300/api/v1 to see Hello World !!|
 
 Live backend in Production - https://job-board-backend-eta.vercel.app/api/v1
 
+Production admin credentials - username : admin , password : admin1234
+
 Deployment : Deployment is handled by Vercel.
 
 CI/CD Pipeline - Push to main branch triggers a deployment. You can also trigger deployments manually from the Vercel dashboard.
