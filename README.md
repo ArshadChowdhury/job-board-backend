@@ -27,6 +27,8 @@ This is the backend for the JobHub application built using **NestJS**, **Postgre
 pnpm install
 ```
 
+Create the database in psql : createdb -U your_username your_database_name
+
 setup environmental variable for database, admin credentials and jwt tokens from .env.example -
 
 for development server - 
